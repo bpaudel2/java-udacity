@@ -1,0 +1,337 @@
+Because JAVA is an OOP language, it includes classes that simply wrap around
+all the primitive types themselves to offer some extra functionality through
+their methods.
+
+Class	Primitive Type
+Integer	int
+Long	long
+Double	double
+Character	char
+String 	char[]
+
+If you don't initialize object using new keyword, it's value will be null.
+
+Access Modifiers:
+	It is strongly recommended in JAVA to label ALL fields as private.
+With methods, it's common to have a mix of private and public methods. The private
+methods are usually knowns as helper methods, since they can only be seen and called
+by the same class, they are usually there to organize your code and keep it simple
+and more readable. 	
+If you don't use any label at all, it will be default to something called 
+"package public" which means it's as if you've labled them public but only to the 
+classes that are in the same package/folder. 
+Set all your classes to public
+Set all your fields to private
+Set any of your methods to public that are considered actions
+Set any of your methods to private that are considered helper methods.
+
+Runtime Inputs:
+	There are 4 different ways a JAVA program can read input from the user:
+	1) Runtime input
+	2) Files
+	3) Command line arguments
+	4) Graphical User Interface (GUI)
+	
+Input Scanner:
+	using java class called Scanner. 
+	import java.util.Scanner;
+	Scanner scanner = new Scanner(System.in);
+	There are methods like nextLine() and nextInt(). 
+	
+	You can run already built and compiled java classes by using the following command
+	via command line.
+	
+	java classname;
+	
+Passing parameter to the main class:
+	If you run program via command line, anything you type after the program name is considered 
+	and input argument. 
+	For exp; we had a java program called weather that prints today's weather, running it from 
+	the command line is as simple as typing in the program name. 
+	
+	java Weather
+	
+	But if you were to pass parameter city to it, you can do this.
+	
+	java Weather Sydney
+	
+	public static void main(String [] args){
+	   if(args.length==0) {
+		  System.out.println("Please specify a location");
+	   }
+	   else {
+		  String location = args[0];
+		  int temperature = 60 + (int)(Math.random()*10);
+		  System.out.println("The weather in "+location+" is "+ temperature);
+	   }
+	}
+	
+JAVA ERRORS:
+	1) Syntax Errors
+		violation of Java's grammatical rules
+		java code won't even compile
+	2) Runtime Errors
+		happens while the program is running
+		might cause the program to crash
+	3) Bugs (Logical Errors)
+		program just does not do what you'd expect
+
+Catching all Exceptions at once VS Catching multiple exceptions:
+	//catching multiple exceptions
+	try{
+	   openFile("somefile.txt");
+	   array[index]++;
+	} catch(FileNotFoundException exception) {
+	   // Handle all the possible file-not-found-related issues here
+	} catch(IndexOutOfBoundsException exception) {
+	   // Handle all the possible index-out-of-bounds-related issues here
+	} 
+	//catching all exceptions
+	try{
+	   openFile("somefile.txt");
+	   array[index]++;
+	} catch(Exception exception) {
+	   // Handle all the possible exceptions here
+	} 
+
+OOP:
+	Inheritance:
+	
+	has allowed objects to be polymorphic. 
+	You are allowed to re-use the parent method in the child class by using 
+	the "super" keyword. For exp:
+	
+	super.isValidMove(position);
+	
+	You can also use super() to call parent's constructor.
+	If a parent class does not have a constructor, you will get a compilation error. 
+	
+	If you are implementing a method in parent class which does not need to be ovrride 
+	in child class then make in final method. 
+	
+	A class can only extends only one class. Java's solution to this is interfaces. 
+	
+	Interface:
+	
+	is like a facade or outline, a sole purpose is to be implemented by other classes.
+	It only defines what needs to be done but don't include how to do it. 
+	Single class can implements multiple interface. 
+	exp: Movable inteface -> Vehicle
+		 Habitable interface -> House
+		 Caravan implements both Movable and Habitable.
+	Implements does not help reuse code, its sole purpose is to create a good design. 
+	You can not create an instance (object) from an interface. 
+	
+The Comparable Interface:
+	this includes a single method definition called compareTo which takes and object as an input
+	parameter of the same type and compares both object ("this" object against the input argument
+	object). 
+	
+	compareTo method should returns:
+		1. a negative integer (any number less than 0)->this object is less than
+		2. zero ->this object is equal
+		3. a positive integer (any number greater than 0) ->this object is greater than.
+		
+		public class Book implements Comparable<Book>{
+		   public int compareTo(Book specifiedBook) {
+			  // First check if they have different page counts
+			  if(this.numberOfPages != specifiedBook.numberOfPages){
+				 // this will return a negative value if this < specified but will return a positive value if this > specified
+				 return this.numberOfPages - specifiedBook.numberOfPages;
+			  }
+			  // If page counts are identical then check if the titles are different
+			  if(!this.title.equals(specifiedBook.title){
+				 return this.title.compareTo(specifiedBook.title);
+			  }
+			  // If page titles are also identical then return the comparison of the authors
+			  return this.author.compareTo(specifiedBook.author);
+			}
+		}
+			
+Final Methods:
+	If you want to protect your method from being overridden in a child class you can prefix it with the keyword
+	final. 
+	
+Final fields:
+	A final field is simply a constant variable! In other words, a variable that is only to be set once and is 
+	not allowed to change ever again!
+
+Static Methods:	
+	Object created from class will distroy eventually. All the objects will be distroyed when their scope ends in JAVA. 
+	Static are in class level and they won't be distroyed. 
+	Static methods can not access non-static fields in the object anymore. 
+	Static methods are methods that are standalone function.
+	
+
+-------------------------Collection----------------------------------
+Limitation of array:
+	1) predefined size
+	2) removing items creates weird gap in array and you have shift items manually to fill out those gaps.
+	
+Collection:
+	1) List
+	2) Stack
+	3) Map
+	4) Queue
+	
+	List
+	is an interface that behaves very similar to an array, is an ordered collection (also know as sequence),
+	user has control over where each item is inserted, can access itmes by their index, 
+	can loop over items for searching
+	
+	1) ArrayList: implements List interface. 
+	does not need predefine size,
+	- add(E element)
+	- add(int index, E element)
+	- get (int index)
+	- contains(Object o)
+	- remove (int index)
+	- size()
+	- clear()
+	for (String item : list) {
+	   System.out.println(item);
+	}
+	
+	
+	Stack
+	represetns a last in first out, internally uses an array just like arrayList. 
+	- push(E item)
+	- pop()
+	- peek()
+	- empty()
+	- search(Object o)
+	
+	Queue
+	resembles the queue or line of people, first in first out. Queue is an interface 
+	not class. It defines two methods for all classes that do implement the Queue interface. 
+	- add(E element)
+	- poll()
+	A special type of Queues is known as Deque which is double-ended queue meaning that you can add or remove
+	elements from either end of deque. Queue offer these method along with two methods of queue. 
+	- addFirst(E element)
+	- addLast(E element)
+	- pollFirst()
+	- pollLast()
+	LinkedList implemens Queue interface. 
+	
+
+----------------------------GENERICS-----------------------------------------
+Generics enables classes to accept parameters when defining them, much like the more familiar parameter
+used in method declarations.
+Defining a type parameter for a class provides a way for you to re-use the same code with different
+inputs. The difference is that the inputs to formal parameters are values, while the inputs to type
+parameters are types. 
+
+Generics in Collections:
+ArrayList uses Generics to allow you to specify the data type of the elements you're intending to add 
+into that arrayList. 
+
+ArrayList<String> listOfStrings = new ArrayList();
+
+This is explicitly saying that you want to create an ArrayList of strings, and hence the compiler will
+only allow Strings to be inserted into this ArrayList and will show you an error if you try to insert 
+something else. 
+
+Generis eliminate the need for casting:
+	Because of generics you can specify the datatype of the stack or queue or any collection when declaring
+	it, thus eliminating the need to cast any return types. 
+	
+	List list = new ArrayList();
+	list.add("hello");
+	String s = (String) list.get(0);
+
+	List<String> list = new ArrayList<String>();
+	list.add("hello");
+	String s = list.get(0);   // no cast
+
+You can create your own Generic Types by declaring a generic parameter when defining your class. 
+Off of Java Doc:
+A generic type is generic class or interface that is parameterized over types. 
+Exp:
+	public class Box {
+		private Object object;
+
+		public void set(Object object) { this.object = object; }
+		public Object get() { return object; }
+	}
+	
+	Since its methods accept or return an Object, you are free to pass in whatever you want, 
+	provided that it is not one of the primitive types. There is no way to verify, at compile
+	time, how the class is used. One part of the code may place an integer in the box and expect
+	to get Integer out of it, while another part of the code may mistakenly pass in a String, 
+	resulting in a runtime error. 
+	
+	/**
+	 * Generic version of the Box class.
+	 * @param <T> the type of the value being boxed
+	 */
+	public class Box<T> {
+		// T stands for "Type"
+		private T t;
+
+		public void set(T t) { this.t = t; }
+		public T get() { return t; }
+	}
+	
+	// Another example
+	Box<Integer> integerBox = new Box<Integer>();
+	
+		public interface Pair<K, V> {
+		public K getKey();
+		public V getValue();
+	}
+
+	public class OrderedPair<K, V> implements Pair<K, V> {
+
+		private K key;
+		private V value;
+
+		public OrderedPair(K key, V value) {
+		this.key = key;
+		this.value = value;
+		}
+
+		public K getKey()	{ return key; }
+		public V getValue() { return value; }
+	}
+	
+	//Autoboxing in action
+	Pair<String, Integer> p1 = new OrderedPair<String, Integer>("Even", 8);
+	Pair<String, String>  p2 = new OrderedPair<String, String>("hello", "world");
+	
+	OrderedPair<String, Box<Integer>> p = new OrderedPair<>("primes", new Box<Integer>(...));
+	
+	----------------Generic Functions-------------------------------------
+	We can also write generic functions that can be called with different types of arguments
+	based on the type of arguments passed to generic method, the compiler handles each method.
+	
+	class Test 
+	{ 
+		// A Generic method example 
+		static <T> void genericDisplay (T element) 
+		{ 
+			System.out.println(element.getClass().getName() + 
+							   " = " + element); 
+		} 
+	   
+		// Driver method 
+		public static void main(String[] args) 
+		{ 
+			 // Calling generic method with Integer argument 
+			genericDisplay(11); 
+	   
+			// Calling generic method with String argument 
+			genericDisplay("GeeksForGeeks"); 
+	   
+			// Calling generic method with double argument 
+			genericDisplay(1.0); 
+		} 
+	}
+	
+	Advantages of Generics:
+	1. Code Reuse: We can write a method/class/interface once and use for any type we want.
+	2. Type Safety: Generics make errors to appear compile time than at run time (it's 
+	   always better to know problems in your code at compile time rather than making your
+	   code fail at your run time. 
+	3. Individual Type Casting is not needed: 
+	4. Implementing generic algorithms: 
