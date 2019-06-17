@@ -1,4 +1,4 @@
-Because JAVA is an OOP language, it includes classes that simply wrap around
+===========Because JAVA is an OOP language, it includes classes that simply wrap around
 all the primitive types themselves to offer some extra functionality through
 their methods.
 
@@ -335,3 +335,16 @@ Exp:
 	   code fail at your run time. 
 	3. Individual Type Casting is not needed: 
 	4. Implementing generic algorithms: 
+	
+	ArrayList method: indexOf returns the index of first occurrence of the specified 
+	element in this list, or -1 if this list does not contain the element. This method also 
+	uses loop internally to search for an item.
+	
+-----------------------HashMaps---------------------------------
+introduced in Java to speed up the search process in ArrayList. 
+HashMaps allow you to store a key for every item you want to add. This key has to be unique
+for the entire list, very much like the index of a typical array, except that this key can be
+any Object of any Type!
+
+The point is to be able to find an item in this collection instantly(without having to loop 
+through all the items inside) and hence save than precious run-time. 
